@@ -3,7 +3,6 @@ package ua.shop.service;
 import lombok.Data;
 import ua.shop.model.Product;
 import ua.shop.repo.ProductRepo;
-import ua.shop.repo.ProductRepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ public class Cart {
         this.repo = productRepository;
         this.productList = new ArrayList<>();
     }
-    public boolean addProduct(int id) {
+    public boolean addProduct(Long id) {
         Optional<Product> product = repo.findProductById(id);
         if (product.isPresent()) {
             productList.add(product.get());
@@ -27,7 +26,7 @@ public class Cart {
         return false;
     }
 
-    public boolean removeProduct(int id) {
+    public boolean removeProduct(Long id) {
         Optional<Product> product = repo.findProductById(id);
         if (product.isPresent()) {
             productList.remove(product.get());
